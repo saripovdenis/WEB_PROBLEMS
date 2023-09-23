@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hand Clock</title>
+    <style>
+        .circle {
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            border: 1px solid black;
+            position: relative;
+        }
+
+        .circle-hour {
+            width: 40%;
+            height: 3px;
+            background: red;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform-origin: bottom left;
+        }
+
+        .circle-minute {
+            width: 45%;
+            height: 2px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            background: violet;
+            transform-origin: bottom left;
+        }
+
+        .circle-second {
+            width: 49%;
+            height: 1px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            background: green;
+            transform-origin: bottom left;
+        }
+    </style>
+</head>
+<body>
+<div class="circle">
+    <div class="circle-hour"></div>
+    <div class="circle-minute"></div>
+    <div class="circle-second"></div>
+</div>
+<script>
+    var hoursArrowEl = document.querySelector('.circle-hour');
+    var minutesArrowEl = document.querySelector('.circle-minute');
+    var secondsArrowEl = document.querySelector('.circle-second');
+
+    function updateArrows() {
+        const date = new Date();
+        const hours = date.getHours();
+        const minutes = date.getMinutes();
+        const seconds = date.getSeconds();
+        hoursArrowEl.style.transform = `rotate(${30 * hours + minutes / 2 - 90}deg)`;
+        minutesArrowEl.style.transform = `rotate(${6 * minutes - 90}deg)`;
+        secondsArrowEl.style.transform = `rotate(${6 * seconds - 90}deg)`;
+    }
+    setInterval(updateArrows, 1000);
+    updateArrows();
+</script>
+</body>
+</html>
+
